@@ -31,6 +31,7 @@ jobs:
       deploy:
         provider: heroku
         api_key: $HEROKU_KEY
+        app: beer-rating-533-backend 
         strategy: git
         skip_cleanup: true
       if: branch = master
