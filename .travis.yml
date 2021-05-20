@@ -30,8 +30,10 @@ jobs:
 
     - stage: deploy
       name: "Deploy"
+      install:
+        - make
       deploy:
         provider: heroku
         api_key: $HEROKU_KEY
-        app:
-          dev: beer-rating-533-backend
+        app: beer-rating-533-backend
+        strategy: git
