@@ -1,21 +1,36 @@
 language: python
 
+stages:
+  - test
+  - build
+  - deploy
 
-install:
-  - make
-services:
-  - postgresql
-before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-script: make test
-env:
-  global:
-    - POSTGRES_DB=travis_ci_test
-    - POSTGRES_HOST=localhost
-    - POSTGRES_USER=postgres
-    - SECRET_KEY=secret
-deploy:
-  provider: heroku
-  api_key: $HEROKU_KEY
-  app: beer-rating-533-backend
-  strategy: git
+jobs:
+  include:
+    - stage: test
+      name: "Test"
+      install:
+        - make
+      services:
+        - postgresql
+      before_script:
+        - psql -c 'create database travis_ci_test;' -U postgres
+      script: make test
+      env:
+        - POSTGRES_DB=travis_ci_test
+        - POSTGRES_HOST=localhost
+        - POSTGRES_USER=postgres
+        - SECRET_KEY=secret
+
+    - stage: deploy
+      name: "Deploy"
+      services:
+        docker
+      install: make
+      script: make build_image
+      deploy:
+        provider: heroku
+        api_key: $HEROKU_KEY
+        strategy: git
+        skip_cleanup: true
+      if: branch = master

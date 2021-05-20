@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# while !</dev/tcp/${POSTGRES_HOST}/${POSTGRES_PORT};
-# do
-#     echo waiting for Postgres to start...;
-#     sleep 3;
-# done;
-
 python manage.py migrate
-# python manage.py collectstatic --noinput
-gunicorn beer_site.wsgi:application -b 0.0.0.0:${PORT} -w 1
+python manage.py collectstatic --noinput
+gunicorn beer_site.wsgi:application -b 0.0.0.0:${1:-8000} -w 1
