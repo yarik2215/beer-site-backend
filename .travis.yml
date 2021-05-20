@@ -1,0 +1,37 @@
+language: python
+
+stages:
+  - test
+  - build
+  - deploy
+
+jobs:
+  include:
+    - stage: test
+      name: "Test"
+      install:
+        - make
+      services:
+        - postgresql
+      before_script:
+        - psql -c 'create database travis_ci_test;' -U postgres
+      script: make test
+      env:
+        - POSTGRES_DB=travis_ci_test
+        - POSTGRES_HOST=localhost
+        - POSTGRES_USER=postgres
+        - SECRET_KEY=secret
+
+    - stage: build
+      name: "Build"
+      services: docker
+      script: make build
+      if: branch = master
+
+    - stage: deploy
+      name: "Deploy"
+      deploy:
+        provider: heroku
+        api_key: $HEROKU_KEY
+        app:
+          dev: beer-rating-533-backend

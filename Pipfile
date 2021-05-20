@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+django-environ = "*"
+pillow = "*"
+gunicorn = "*"
+djangorestframework = "*"
+drf-yasg = "*"
+django-allauth = "*"
+dj-rest-auth = "*"
+psycopg2-binary = "*"
+django-cors-headers = "*"
+django-filter = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+createsuperuser = "python manage.py createsuperuser"
+dev = "./run.sh"
+test = "python manage.py test -v2"
