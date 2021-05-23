@@ -3,5 +3,7 @@ init:
 	pipenv install --dev
 test:
 	pipenv run python manage.py test -v2
+static:
+	pipenv run collectstatic
 build_image:
 	./push_image.sh

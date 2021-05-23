@@ -2,7 +2,7 @@ language: python
 
 stages:
   - test
-  - build
+  - collect_static
   - deploy
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
       services:
         docker
       install: make
-      script: make build_image
+      script: make static && make build_image
       deploy:
         provider: heroku
         api_key: $HEROKU_KEY
@@ -35,3 +35,5 @@ jobs:
         strategy: git
         skip_cleanup: true
       if: branch = master
+      env:
+        - USE_S3=True
