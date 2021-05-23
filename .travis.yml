@@ -39,3 +39,6 @@ jobs:
       env:
         - USE_S3=True
         - SECRET_KEY=secret
+        - POSTGRES_DB=travis_ci_test
+        - POSTGRES_HOST=localhost
+        - POSTGRES_USER=postgres

@@ -2,8 +2,8 @@ init:
 	pip install pipenv
 	pipenv install --dev
 test:
-	pipenv run python manage.py test -v2
+	python manage.py test -v2
 static:
-	pipenv run collectstatic
+	python manage.py collectstatic --no-input
 build_image:
 	./push_image.sh
