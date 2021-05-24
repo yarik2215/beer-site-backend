@@ -29,12 +29,12 @@ jobs:
         docker
       install: make
       script: make static && make build_image
-      deploy:
-        provider: heroku
-        api_key: $HEROKU_KEY
-        app: beer-rating-533-backend 
-        strategy: git
-        skip_cleanup: true
+      # deploy:
+      #   provider: heroku
+      #   api_key: $HEROKU_KEY
+      #   app: beer-rating-533-backend 
+      #   strategy: git
+      #   skip_cleanup: true
       if: branch = master
       env:
         - USE_S3=True
