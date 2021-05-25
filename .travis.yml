@@ -31,7 +31,7 @@ jobs:
       script: 
         - make static
         - make build_image
-        - echo "$SSH_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+        - echo "$SSH_KEY" > ~/.ssh/id_rsa
         - chmod 700 ~/.ssh/id_rsa
         - bash ./deploy.sh
       deploy:
