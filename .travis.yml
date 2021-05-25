@@ -28,15 +28,22 @@ jobs:
       services:
         docker
       install: make
-      script: make static && make build_image
-      # deploy:
-      #   provider: heroku
-      #   api_key: $HEROKU_KEY
-      #   app: beer-rating-533-backend 
-      #   strategy: git
-      #   skip_cleanup: true
+      script: 
+        - make static
+        - make build_image
+        - echo "$SSH_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+        - chmod 700 ~/.ssh/id_rsa
+        - bash ./deploy.sh
+      deploy:
+        provider: heroku
+        api_key: $HEROKU_KEY
+        app: beer-rating-533-backend 
+        strategy: git
+        skip_cleanup: true
       if: branch = master
       env:
+        - SSH_USER=ubuntu
+        - SSH_ADDRESS=35.158.232.255
         - USE_S3=True
         - SECRET_KEY=secret
         - POSTGRES_DB=travis_ci_test
