@@ -163,12 +163,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-
-# STATICFILES_DIRS = [
-#     BASE_DIR / 'static',
-# ]
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'static'
+STATIC_URL = '/static/'
 
 # AWS S3
 USE_S3 = env.bool('USE_S3')
@@ -188,7 +184,6 @@ else:
     MEDIA_ROOT = BASE_DIR / 'media'
     MEDIA_URL = '/media/'
 
-STATIC_URL = '/static/'
 
 # CORS
 CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS', default=[])
