@@ -29,16 +29,14 @@ jobs:
         docker
       install: make
       script: 
-        - make static
-        - make build_image
-        - echo "$SSH_KEY" > ~/.ssh/id_rsa
+        # - make static
+        # - make build_image
+        - echo "$SSH_KEY" | base64 -d > ~/.ssh/id_rsa
+        - cat ~/.ssh/id_rsa
         - chmod 700 ~/.ssh/id_rsa
-        - bash ./deploy.sh
       deploy:
-        provider: heroku
-        api_key: $HEROKU_KEY
-        app: beer-rating-533-backend 
-        strategy: git
+        provider: script
+        script: bash ./deploy.sh
         skip_cleanup: true
       if: branch = master
       env:
