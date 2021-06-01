@@ -4,5 +4,3 @@
 
 
 Beer site backend
-
-TEST
