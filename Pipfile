@@ -15,8 +15,13 @@ dj-rest-auth = "*"
 psycopg2-binary = "*"
 django-cors-headers = "*"
 django-filter = "*"
+django-storages = "*"
+boto3 = "*"
 
 [dev-packages]
+pylint-django = "*"
+pytest = "*"
+pytest-django = "*"
 
 [requires]
 python_version = "3.8"
@@ -25,3 +30,4 @@ python_version = "3.8"
 createsuperuser = "python manage.py createsuperuser"
 dev = "./run.sh"
 test = "python manage.py test -v2"
+collectstatic = "python manage.py collectstatic"

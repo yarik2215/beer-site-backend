@@ -10,11 +10,6 @@ class UserCommentInline(admin.StackedInline):
 
 @admin.register(Beer)
 class PostAdmin(admin.ModelAdmin):
-    list_filter = (
-        'mark',
-        'price',
-        'updated_at',
-    )
     list_display = (
         'name',
         'mark',
