@@ -33,16 +33,7 @@ jobs:
         environment:
           USE_S3: "False"
           SECRET_KEY: "secret"
-          POSTGRES_USER: ubuntu
-          POSTGRES_DB: circle_test
-          POSTGRES_PASSWORD: ""
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: 5432
-      - image: circleci/postgres:9.6.5-alpine-ram
-        environment:
-          POSTGRES_USER: ubuntu
-          POSTGRES_DB: circle_test
-          POSTGRES_PASSWORD: ""
+          DATABASE_URL: "sqlite:////tmp/my-tmp-sqlite.db"
     # Checkout the code as the first step. This is a dedicated CircleCI step.
     # The python orb's install-packages step will install the dependencies from a Pipfile via Pipenv by default.
     # Here we're making sure we use just use the system-wide pip. By default it uses the project root's requirements.txt.
