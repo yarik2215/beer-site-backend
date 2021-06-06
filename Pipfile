@@ -23,9 +23,6 @@ pylint-django = "*"
 pytest = "*"
 pytest-django = "*"
 
-[requires]
-python_version = "3.8"
-
 [scripts]
 createsuperuser = "python manage.py createsuperuser"
 dev = "./run.sh"

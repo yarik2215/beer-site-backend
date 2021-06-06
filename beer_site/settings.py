@@ -104,21 +104,22 @@ WSGI_APPLICATION = 'beer_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-POSTGRES_DB = env('POSTGRES_DB')
-POSTGRES_USER = env('POSTGRES_USER')
-POSTGRES_PASSWORD = env('POSTGRES_PASSWORD', default="")
-POSTGRES_HOST = env('POSTGRES_HOST', default='localhost')
-POSTGRES_PORT = env('POSTGRES_PORT', default=5432)
+# POSTGRES_DB = env('POSTGRES_DB')
+# POSTGRES_USER = env('POSTGRES_USER')
+# POSTGRES_PASSWORD = env('POSTGRES_PASSWORD', default="")
+# POSTGRES_HOST = env('POSTGRES_HOST', default='localhost')
+# POSTGRES_PORT = env('POSTGRES_PORT', default=5432)
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': POSTGRES_DB,
-        'USER': POSTGRES_USER,
-        'PASSWORD': POSTGRES_PASSWORD,
-        'HOST': POSTGRES_HOST,
-        'PORT': POSTGRES_PORT
-    },
+'default':env.db('DATABASE_URL')
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': POSTGRES_DB,
+#         'USER': POSTGRES_USER,
+#         'PASSWORD': POSTGRES_PASSWORD,
+#         'HOST': POSTGRES_HOST,
+#         'PORT': POSTGRES_PORT
+#     },
 }
 
 
