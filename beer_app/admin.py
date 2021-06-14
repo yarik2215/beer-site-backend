@@ -18,4 +18,4 @@ class PostAdmin(admin.ModelAdmin):
     )
     search_fields = ('name',)
     date_hierarchy = 'updated_at'
-    inlines = [UserCommentInline]
+#    inlines = [UserCommentInline]
